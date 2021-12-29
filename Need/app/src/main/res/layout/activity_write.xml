@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nerd.need.viewmodel.activity.WriteViewModel" />
+
+        <variable
+            name="activity"
+            type="com.nerd.need.view.activity.WriteActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".view.activity.WriteActivity">
+
+        <ImageButton
+            android:id="@+id/write_backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_backbtn" />
+
+        <ImageButton
+            android:id="@+id/write_cameraBtn"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_backBtn"
+            app:srcCompat="@drawable/ic_camera" />
+
+        <EditText
+            android:id="@+id/write_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/font_roboto_bold"
+            android:hint="제목을 입력해주세요"
+            android:padding="10dp"
+            android:textColor="@color/color_write_hint"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/write_cameraBtn"
+            app:layout_constraintTop_toBottomOf="@+id/write_backBtn" />
+
+        <EditText
+            android:id="@+id/write_content"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/font_roboto_bold"
+            android:hint="내용을 입력해주세요"
+            android:inputType="textMultiLine"
+            android:lines="3"
+            android:maxLines="8"
+            android:padding="10dp"
+            android:textColor="@color/color_write_hint"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_cameraBtn" />
+
+        <TextView
+            android:id="@+id/write_hint_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/font_roboto_bold"
+            android:text="@string/text_input_tag"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_content" />
+
+        <TextView
+            android:id="@+id/write_hint_tag_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/font_roboto_bold"
+            android:textColor="@color/color_write_hint"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/write_hint_tag"
+            app:layout_constraintTop_toBottomOf="@+id/write_content"
+            tools:text="(남은 나눔 횟수 : 3회)" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/write_endBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_confirm_button"
+            android:fontFamily="@font/font_roboto_bold"
+            android:text="@string/text_write_end"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/write_buyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/background_disabled_button"
+            android:fontFamily="@font/font_roboto_bold"
+            android:padding="8dp"
+            android:text="@string/text_want_buy"
+            android:textColor="@color/color_tag"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_hint_tag" />
+
+        <TextView
+            android:id="@+id/write_shareBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_disabled_button"
+            android:fontFamily="@font/font_roboto_bold"
+            android:padding="8dp"
+            android:text="@string/text_want_share"
+            android:textColor="@color/color_tag"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_hint_tag" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/write_input_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/write_endBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/write_buyBtn">
+
+            <EditText
+                android:id="@+id/write_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/font_roboto_bold"
+                android:hint="0"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="64sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/write_hint_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="50000" />
+
+            <TextView
+                android:id="@+id/write_hint_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/font_roboto_bold"
+                android:text="@string/text_hint_price"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

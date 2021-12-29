@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Need</string>
+
+    <string name="text_want_buy">구매원해요</string>
+    <string name="text_want_share">나눔원해요</string>
+    <string name="text_okay">이제 괜찮아요</string>
+    <string name="text_already_buy">구매했어요</string>
+    <string name="text_already_share">나눔 받았어요</string>
+
+    <string name="text_login">로그인</string>
+    <string name="text_signUp">회원가입</string>
+    <string name="text_id">아이디</string>
+    <string name="text_password">비밀번호</string>
+    <string name="text_name">이름</string>
+    <string name="text_phone">전화번호</string>
+    <string name="text_area">지역</string>
+
+    <string name="text_signup_end">가입 완료</string>
+    <string name="text_write_end">가입 완료</string>
+
+    <string name="text_writer">작성자</string>
+    <string name="text_date">작성일</string>
+    <string name="text_phone2">연락처</string>
+    <string name="text_change_state">상태 변경</string>
+
+    <string name="text_input_title">제목을 입력해주세요.</string>
+    <string name="text_input_content">내용을 입력해주세요.</string>
+    <string name="text_input_tag">태그를 선택해주세요.</string>
+    <string name="text_hint_price">원</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

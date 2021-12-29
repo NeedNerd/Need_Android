@@ -1,0 +1,26 @@
+package com.nerd.need.view.activity
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.activity.viewModels
+import com.nerd.need.R
+import com.nerd.need.databinding.ActivitySignupBinding
+import com.nerd.need.util.base.BaseActivity
+import com.nerd.need.viewmodel.activity.SignupViewModel
+
+class SignupActivity : BaseActivity<ActivitySignupBinding, SignupViewModel>() {
+    override val viewModel: SignupViewModel by viewModels()
+    override val layoutRes: Int
+        get() = R.layout.activity_signup
+
+    override fun observerViewModel() {
+        mBinding.activity = this
+        with(mViewModel){
+
+        }
+    }
+
+    fun onClickBackBtn(){
+        finish()
+    }
+}

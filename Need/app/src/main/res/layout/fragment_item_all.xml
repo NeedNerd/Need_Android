@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nerd.need.viewmodel.fragment.ItemAllViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.nerd.need.view.fragment.ItemAllFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".view.fragment.ItemAllFragment">
+
+        <LinearLayout
+            android:id="@+id/my_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/my_want_buy_btn"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/background_disabled_button"
+                android:fontFamily="@font/font_roboto_bold"
+                android:onClick="@{() -> fragment.onClickBuyBtn()}"
+                android:text="@string/text_want_buy"
+                android:textColor="@color/color_tag"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/my_want_share_btn"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/background_disabled_button"
+                android:fontFamily="@font/font_roboto_bold"
+                android:onClick="@{() -> fragment.onClickShareBtn()}"
+                android:text="@string/text_want_share"
+                android:textColor="@color/color_tag"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_tags"
+            tools:listitem="@layout/main_item" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

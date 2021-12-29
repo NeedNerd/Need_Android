@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nerd.need.viewmodel.activity.DetailViewModel" />
+
+        <variable
+            name="activity"
+            type="com.nerd.need.view.activity.DetailActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".view.activity.DetailActivity">
+
+        <ImageButton
+            android:id="@+id/detail_backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/ic_backbtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_backBtn">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/detail_image"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@tools:sample/avatars" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/detail_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/font_noto_medium"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                        tools:text="맥북 삽니다." />
+
+                    <TextView
+                        android:id="@+id/detail_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/background_tag_want_buy"
+                        android:fontFamily="@font/font_roboto_bold"
+                        android:padding="8dp"
+                        android:text="@string/text_want_buy"
+                        android:textColor="@color/color_tag"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                    <TextView
+                        android:id="@+id/detail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_tag"
+                        tools:text="50000원" />
+
+                    <TextView
+                        android:id="@+id/detail_hint_writer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/text_writer"
+                        android:textColor="@color/color_hint"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+
+                    <TextView
+                        android:id="@+id/detail_writer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/color_detail"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/detail_hint_writer"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_title"
+                        tools:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/detail_hint_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/text_date"
+                        android:textColor="@color/color_hint"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_writer" />
+
+                    <TextView
+                        android:id="@+id/detail_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/color_detail"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/detail_hint_date"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_writer"
+                        tools:text="작성일" />
+
+                    <TextView
+                        android:id="@+id/detail_hint_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/text_phone2"
+                        android:textColor="@color/color_hint"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_date" />
+
+                    <TextView
+                        android:id="@+id/detail_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/color_detail"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/detail_hint_phone"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_date"
+                        tools:text="작성일" />
+
+                    <TextView
+                        android:id="@+id/detail_hint_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/text_area"
+                        android:textColor="@color/color_hint"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_phone" />
+
+                    <TextView
+                        android:id="@+id/detail_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/color_detail"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/detail_hint_area"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_phone"
+                        tools:text="작성일" />
+
+                    <TextView
+                        android:id="@+id/detail_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_area"
+                        tools:text="ㄴㅇㄱㅁㄴㅇㄱㄴㄴㅇㄹㅁㄴ우헹ㄴ뭏엠ㄴ훔ㅇ네ㅑㅎ뭉ㄴ햐ㅔ우ㅑㅔㄴ우눙메햐ㅜㄴㅇ메ㅑ훈ㅇㅁ헤ㅑㅁㄴ우ㅑㅔㅔㅑㅁㄴ어륨ㄴㅇㅁㄴㅁㄴㅇ리ㅠㅣㅠ" />
+
+                    <TextView
+                        android:id="@+id/detail_hintState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/font_roboto_bold"
+                        android:text="@string/text_change_state"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/detail_hintState">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/detail_okayBtn"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/background_tag_okay"
+                            android:fontFamily="@font/font_roboto_bold"
+                            android:text="@string/text_okay"
+                            android:textColor="@color/color_tag"
+                            android:textSize="10sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/detail_buyBtn"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/background_tag_already_buy"
+                            android:fontFamily="@font/font_roboto_bold"
+                            android:text="@string/text_already_buy"
+                            android:textColor="@color/color_tag"
+                            android:textSize="10sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/detail_shareBtn"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/background_tag_already_share"
+                            android:fontFamily="@font/font_roboto_bold"
+                            android:text="@string/text_already_share"
+                            android:textColor="@color/color_tag"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

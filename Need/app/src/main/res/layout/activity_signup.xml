@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nerd.need.viewmodel.activity.SignupViewModel" />
+
+        <variable
+            name="activity"
+            type="com.nerd.need.view.activity.SignupActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        tools:context=".view.activity.SignupActivity">
+
+        <ImageButton
+            android:id="@+id/signUp_backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="@{() -> activity.onClickBackBtn()}"
+            android:padding="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_backbtn" />
+
+        <EditText
+            android:id="@+id/signUp_edId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_login_input"
+            android:hint="@string/text_id"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={viewModel.id}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_backBtn" />
+
+        <EditText
+            android:id="@+id/signUp_etPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_login_input"
+            android:hint="@string/text_password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:text="@={viewModel.password}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_edId" />
+
+        <EditText
+            android:id="@+id/signUp_edName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_login_input"
+            android:hint="@string/text_name"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={viewModel.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_etPassword" />
+
+        <EditText
+            android:id="@+id/signUp_edPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_login_input"
+            android:hint="@string/text_phone"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={viewModel.phone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_edName" />
+
+        <EditText
+            android:id="@+id/signUp_edArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_login_input"
+            android:hint="@string/text_area"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={viewModel.area}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_edPhone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signUp_endBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_confirm_button"
+            android:fontFamily="@font/font_roboto_bold"
+            android:text="@string/text_signup_end"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

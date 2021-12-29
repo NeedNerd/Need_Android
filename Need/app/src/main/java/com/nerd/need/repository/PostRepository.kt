@@ -1,18 +1,14 @@
 package com.nerd.need.repository
 
-import android.util.Log
 import com.nerd.need.data.Server
-import com.nerd.need.data.model.request.LoginRequest
-import com.nerd.need.data.model.request.RegisterRequest
-import com.nerd.need.data.model.response.LoginResponse
+import com.nerd.need.data.model.request.WriteRequest
 import io.reactivex.Single
+import okhttp3.MultipartBody
 import org.json.JSONObject
 
-class AuthRepository {
-    fun login(request: LoginRequest): Single<String> {
-        return Server.authApi.login(request).map {
-            Log.d("middle", it.isSuccessful.toString())
-
+class PostRepository {
+    fun uploadImage(token: String, image: MultipartBody.Part): Single<String> {
+        return Server.postApi.uploadPhoto(token, image).map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody()!!.string())
                 throw Throwable(errorBody.getString("message"))
@@ -22,14 +18,13 @@ class AuthRepository {
         }
     }
 
-    fun register(request: RegisterRequest): Single<String> {
-        return Server.authApi.register(request).map {
+    fun writePost(token: String, request: WriteRequest): Single<Int>{
+        return Server.postApi.post(token, request).map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody()!!.string())
                 throw Throwable(errorBody.getString("message"))
             }
-
-            it.message()
+            it.body()!!.data
         }
     }
 }

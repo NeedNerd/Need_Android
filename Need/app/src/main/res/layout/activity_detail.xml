@@ -220,63 +220,73 @@
                         app:layout_constraintTop_toBottomOf="@+id/detail_area"
                         tools:text="ㄴㅇㄱㅁㄴㅇㄱㄴㄴㅇㄹㅁㄴ우헹ㄴ뭏엠ㄴ훔ㅇ네ㅑㅎ뭉ㄴ햐ㅔ우ㅑㅔㄴ우눙메햐ㅜㄴㅇ메ㅑ훈ㅇㅁ헤ㅑㅁㄴ우ㅑㅔㅔㅑㅁㄴ어륨ㄴㅇㅁㄴㅁㄴㅇ리ㅠㅣㅠ" />
 
-                    <TextView
-                        android:id="@+id/detail_hintState"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/font_roboto_bold"
-                        android:text="@string/text_change_state"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/detail_content" />
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/detail_hintState">
+                        app:layout_constraintTop_toBottomOf="@+id/detail_content">
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/detail_okayBtn"
-                            android:layout_width="70dp"
+                        <TextView
+                            android:id="@+id/detail_hintState"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/background_tag_okay"
+                            android:layout_marginStart="16dp"
                             android:fontFamily="@font/font_roboto_bold"
-                            android:text="@string/text_okay"
-                            android:textColor="@color/color_tag"
-                            android:textSize="10sp" />
+                            android:text="@string/text_change_state"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/detail_buyBtn"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/background_tag_already_buy"
-                            android:fontFamily="@font/font_roboto_bold"
-                            android:text="@string/text_already_buy"
-                            android:textColor="@color/color_tag"
-                            android:textSize="10sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/detail_hintState">
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/detail_shareBtn"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/background_tag_already_share"
-                            android:fontFamily="@font/font_roboto_bold"
-                            android:text="@string/text_already_share"
-                            android:textColor="@color/color_tag"
-                            android:textSize="10sp" />
-                    </LinearLayout>
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/detail_okayBtn"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/background_tag_okay"
+                                android:fontFamily="@font/font_roboto_bold"
+                                android:text="@string/text_okay"
+                                android:textColor="@color/color_tag"
+                                android:textSize="10sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/detail_buyBtn"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/background_tag_already_buy"
+                                android:fontFamily="@font/font_roboto_bold"
+                                android:text="@string/text_already_buy"
+                                android:textColor="@color/color_tag"
+                                android:textSize="10sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/detail_shareBtn"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/background_tag_already_share"
+                                android:fontFamily="@font/font_roboto_bold"
+                                android:text="@string/text_already_share"
+                                android:textColor="@color/color_tag"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

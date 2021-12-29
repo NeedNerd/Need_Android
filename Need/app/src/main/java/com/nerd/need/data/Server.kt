@@ -1,6 +1,7 @@
 package com.nerd.need.data
 
 import com.nerd.need.data.api.AuthApi
+import com.nerd.need.data.api.PostApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,5 +19,7 @@ object Server {
         .client(okHttpClient)
         .baseUrl(Constants.SERVER_HOST)
         .build()
-        .create(AuthApi::class.java)
+
+    val authApi: AuthApi = serverRetrofit.create(AuthApi::class.java)
+    val postApi: PostApi = serverRetrofit.create(PostApi::class.java)
 }

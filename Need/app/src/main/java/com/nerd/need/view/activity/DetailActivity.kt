@@ -43,6 +43,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
             modifyEvent.observe(this@DetailActivity, Observer {
                 Toast.makeText(this@DetailActivity, "게시글 상태 변경 성공", Toast.LENGTH_SHORT)
                     .show()
+                getDetailData(postData?.idx!!)
             })
 
             onErrorEvent.observe(this@DetailActivity, Observer {
@@ -69,15 +70,36 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
         postIdx = intent?.getIntExtra("postIdx", 0)!!
 
         Log.d("sdaf", postIdx.toString())
+        getDetailData(postIdx)
+    }
+
+    private fun getDetailData(postIdx: Int) {
         val token = SharedPreferenceManager.getToken(this)
 
         if (token != null) {
-            mViewModel.getDetailPost(token, postIdx)
+            mViewModel.getDetailPost(token, this.postIdx)
         } else {
             Toast.makeText(this@DetailActivity, "토큰이 만료되었습니다.", Toast.LENGTH_SHORT)
                 .show()
         }
     }
+
+    fun changePostState(state: String) {
+        val token = SharedPreferenceManager.getToken(this)
+
+        if (token != null) {
+            if(postData != null){
+                mViewModel.modifyPost(token, postData?.idx!!, state)
+            } else {
+                Toast.makeText(this@DetailActivity, "post idx가 존재하지 않습니다..", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        } else {
+            Toast.makeText(this@DetailActivity, "토큰이 만료되었습니다.", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
 
     fun onClickBackBtn() {
         finish()

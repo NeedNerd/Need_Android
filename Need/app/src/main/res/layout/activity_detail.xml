@@ -276,6 +276,7 @@
                                 android:layout_margin="8dp"
                                 android:background="@drawable/background_tag_okay"
                                 android:fontFamily="@font/font_roboto_bold"
+                                android:onClick='@{() -> activity.changePostState("2")}'
                                 android:text="@string/text_okay"
                                 android:textColor="@color/color_tag"
                                 android:textSize="10sp" />
@@ -287,6 +288,7 @@
                                 android:layout_margin="8dp"
                                 android:background="@drawable/background_tag_already_buy"
                                 android:fontFamily="@font/font_roboto_bold"
+                                android:onClick='@{() -> activity.changePostState("3")}'
                                 android:text="@string/text_already_buy"
                                 android:textColor="@color/color_tag"
                                 android:textSize="10sp" />
@@ -298,6 +300,7 @@
                                 android:layout_margin="8dp"
                                 android:background="@drawable/background_tag_already_share"
                                 android:fontFamily="@font/font_roboto_bold"
+                                android:onClick='@{() -> activity.changePostState("4")}'
                                 android:text="@string/text_already_share"
                                 android:textColor="@color/color_tag"
                                 android:textSize="10sp" />

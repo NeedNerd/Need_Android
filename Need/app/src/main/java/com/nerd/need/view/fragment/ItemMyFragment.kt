@@ -18,6 +18,13 @@ class ItemMyFragment : BaseFragment<FragmentItemMyBinding, ItemMyViewModel>() {
         get() = R.layout.fragment_item_my
 
     var adapter: PostListAdapter? = null
+    var lastState = -1
+
+    override fun onResume() {
+        super.onResume()
+        checkMyPostState()
+
+    }
 
     override fun observerViewModel() {
         mBinding.fragment = this
@@ -37,7 +44,10 @@ class ItemMyFragment : BaseFragment<FragmentItemMyBinding, ItemMyViewModel>() {
         adapter = PostListAdapter()
         adapter!!.context = requireContext()
         mBinding.mainRecyclerView.adapter = adapter
+        getMyPost()
+    }
 
+    private fun getMyPost() {
         val token = SharedPreferenceManager.getToken(requireContext())
         if (token != null) {
             mViewModel.getMyPost(token)
@@ -49,44 +59,57 @@ class ItemMyFragment : BaseFragment<FragmentItemMyBinding, ItemMyViewModel>() {
     fun onClickBtn(btnIdx: Int) {
         initBtn()
 
-        when (btnIdx) {
-            0 -> {
-                mBinding.myWantBuyBtn.background =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_want_buy)
-                getMyStatePost(0)
-            }
-            1 -> {
-                mBinding.myWantShareBtn.background =
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.background_tag_want_share)
-                getMyStatePost(1)
-            }
-            2 -> {
-                mBinding.myOkayBtn.background =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_okay)
-                getMyStatePost(2)
-            }
-            3 -> {
-                mBinding.myAlreadyBuyBtn.background =
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.background_tag_already_buy)
-                getMyStatePost(3)
-            }
-            4 -> {
-                mBinding.myAlreadyShareBtn.background =
-                    ContextCompat.getDrawable(requireContext(),
-                        R.drawable.background_tag_already_share)
-                getMyStatePost(4)
+        if (btnIdx == lastState) {
+            lastState = -1
+            checkMyPostState()
+        } else {
+            when (btnIdx) {
+                0 -> {
+                    mBinding.myWantBuyBtn.background =
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.background_tag_want_buy)
+                    lastState = 0
+                    checkMyPostState()
+                }
+                1 -> {
+                    mBinding.myWantShareBtn.background =
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.background_tag_want_share)
+                    lastState = 1
+                    checkMyPostState()
+                }
+                2 -> {
+                    mBinding.myOkayBtn.background =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_okay)
+                    lastState = 2
+                    checkMyPostState()
+                }
+                3 -> {
+                    mBinding.myAlreadyBuyBtn.background =
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.background_tag_already_buy)
+                    lastState = 3
+                    checkMyPostState()
+                }
+                4 -> {
+                    mBinding.myAlreadyShareBtn.background =
+                        ContextCompat.getDrawable(requireContext(),
+                            R.drawable.background_tag_already_share)
+                    lastState = 4
+                    checkMyPostState()
+                }
             }
         }
-
-
     }
 
-    private fun getMyStatePost(state: Int){
+    private fun checkMyPostState() {
         val token = SharedPreferenceManager.getToken(requireContext())
         if (token != null) {
-            mViewModel.getMyStatePost(token, state)
+            if (lastState >= 0) {
+                mViewModel.getMyStatePost(token, lastState)
+            } else {
+                mViewModel.getMyPost(token)
+            }
         } else {
             Toast.makeText(requireContext(), "토큰이 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
         }

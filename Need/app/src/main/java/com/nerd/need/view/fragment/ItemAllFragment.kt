@@ -18,6 +18,14 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
         get() = R.layout.fragment_item_all
 
     var adapter: PostListAdapter? = null
+    var lastState = -1
+
+    override fun onResume() {
+        super.onResume()
+        if(lastState != null){
+            getAllStatePost(lastState)
+        }
+    }
 
     override fun observerViewModel() {
         mBinding.fragment = this
@@ -33,7 +41,8 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
             })
 
             onErrorEvent.observe(this@ItemAllFragment, Observer {
-                Toast.makeText(requireContext(), "글 목록을 가져오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "글 목록을 가져오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT)
+                    .show()
                 Log.d("error", "ALL Post 중 오류 : $it")
             })
         }
@@ -44,7 +53,10 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
         adapter = PostListAdapter()
         adapter!!.context = requireContext()
         mBinding.mainRecyclerView.adapter = adapter
+        getAllPost()
+    }
 
+    private fun getAllPost() {
         val token = SharedPreferenceManager.getToken(requireContext())
         if (token != null) {
             mViewModel.getAllPost(token)
@@ -53,12 +65,26 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
         }
     }
 
-    private fun getAllState(state: Int) {
+    private fun getAllStatePost(state: Int){
         val token = SharedPreferenceManager.getToken(requireContext())
         if (token != null) {
             mViewModel.getAllStatePost(token, state)
         } else {
             Toast.makeText(requireContext(), "토큰이 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun checkAllState(state: Int) {
+        if (lastState == state) {
+            lastState == -1
+        } else {
+            lastState = state
+        }
+
+        if (lastState >= 0) {
+            getAllStatePost(lastState)
+        } else {
+            getAllPost()
         }
     }
 
@@ -68,7 +94,7 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
             ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_want_buy)
         mBinding.myWantShareBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.background_disabled_button)
-        getAllState(0)
+        checkAllState(0)
     }
 
     fun onClickShareBtn() {
@@ -76,7 +102,8 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
             ContextCompat.getDrawable(requireContext(), R.drawable.background_disabled_button)
         mBinding.myWantShareBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_want_share)
-        getAllState(1)
+        lastState = 1
+        checkAllState(1)
     }
 
 }

@@ -33,9 +33,11 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
     private val OPEN_GALLARY: Int = 1
     var imageFile: MultipartBody.Part? = null
     var state: String = ""
+    var shareCount: Int = 0;
 
     override fun observerViewModel() {
         mBinding.activity = this
+        getMyInfo()
         with(mViewModel) {
             uploadImageEvent.observe(this@WriteActivity, Observer {
                 writePost(it, state, SharedPreferenceManager.getToken(this@WriteActivity)!!)
@@ -45,32 +47,51 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
                 Log.d("success", "게시글 작성 성공")
             })
 
+            myInfoEvent.observe(this@WriteActivity, Observer {
+                mBinding.writeHintTagCount.text = "(남은 나눔 횟수 : ${it.count}회)"
+                shareCount = it.count
+            })
+
             onErrorEvent.observe(this@WriteActivity, Observer {
-                Toast.makeText(this@WriteActivity, "게시글 작성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@WriteActivity, "게시글 작성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT)
+                    .show()
                 Log.d("error", "게시글 작성 중 오류 : $it")
             })
         }
     }
 
     fun onClickUploadBtn() {
-        val token = SharedPreferenceManager.getToken(this)
+        if (shareCount > 0) {
+            val token = SharedPreferenceManager.getToken(this)
 
-        if (token != null) {
-            if (state != "") {
-                if (imageFile != null) {
-                    mViewModel.uploadImage(token, imageFile!!)
+            if (token != null) {
+                if (state != "") {
+                    if (imageFile != null) {
+                        mViewModel.uploadImage(token, imageFile!!)
+                    }
+                } else {
+                    Toast.makeText(this, "나눔 & 구매 중 한 가지를 선택해주세요.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "나눔 & 구매 중 한 가지를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "토큰이 만료되었습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
             }
-        }
-        else {
-            Toast.makeText(this, "토큰이 만료되었습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "나눔 횟수가 부족합니다. 다음 달 1일에 다시 추가됩니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
     fun onClickBackBtn() {
         finish()
+    }
+
+    fun getMyInfo() {
+        val token = SharedPreferenceManager.getToken(this)
+
+        if (token != null) {
+            mViewModel.getMyInfo(token)
+        } else {
+            Toast.makeText(this, "토큰이 만료되었습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onClickCameraBtn() {

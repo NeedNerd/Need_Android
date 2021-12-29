@@ -3,6 +3,8 @@ package com.nerd.need.viewmodel.activity
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.nerd.need.data.model.request.WriteRequest
+import com.nerd.need.data.model.response.MyInfoReponse
+import com.nerd.need.repository.AuthRepository
 import com.nerd.need.repository.PostRepository
 import com.nerd.need.util.base.BaseViewModel
 import io.reactivex.observers.DisposableSingleObserver
@@ -10,6 +12,7 @@ import okhttp3.MultipartBody
 
 class WriteViewModel : BaseViewModel() {
     private val repository = PostRepository()
+    private val authRepository = AuthRepository()
 
     val title = MutableLiveData<String>()
     val content = MutableLiveData<String>()
@@ -17,6 +20,22 @@ class WriteViewModel : BaseViewModel() {
 
     val uploadImageEvent = MutableLiveData<String>()
     val writePostEvent = MutableLiveData<Int>()
+    val myInfoEvent = MutableLiveData<MyInfoReponse>()
+
+    fun getMyInfo(token: String){
+        addDisposable(authRepository.getMyInfo(token), object: DisposableSingleObserver<MyInfoReponse>(){
+            override fun onSuccess(t: MyInfoReponse) {
+                myInfoEvent.value = t
+                Log.d("result", "내 정보 조회 성공")
+            }
+
+            override fun onError(e: Throwable) {
+                onErrorEvent.value = e
+                Log.d("result", "내 정보 조회 실패")
+            }
+
+        })
+    }
 
     fun uploadImage(token: String, imageFile: MultipartBody.Part) {
         addDisposable(repository.uploadImage(token, imageFile),

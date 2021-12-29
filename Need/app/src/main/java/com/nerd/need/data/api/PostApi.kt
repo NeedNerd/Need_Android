@@ -46,6 +46,6 @@ interface PostApi {
         @Query("state") state: Int,
     ): Single<Response<BaseResponse<List<PostResponse>>>>
 
-    @POST("post/{idx}")
+    @PATCH("post/{idx}")
     fun modifyPost(@Header("Authorization") token: String, @Path("idx") idx: Int, @Query("state") state: String): Single<Response<BaseResponse<Any>>>
 }

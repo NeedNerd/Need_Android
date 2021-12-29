@@ -5,9 +5,13 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.nerd.need.data.model.response.PostResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_item">
@@ -19,6 +23,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
+            app:imageUrl="@{item.photo}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,11 +38,12 @@
             android:background="@drawable/background_tag_want_buy"
             android:fontFamily="@font/font_roboto_bold"
             android:padding="8dp"
-            android:text="@string/text_want_buy"
             android:textColor="@color/color_tag"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/item_image"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tagCheck="@{item.state}"
+            tools:text="@string/text_want_buy" />
 
         <TextView
             android:id="@+id/item_title"
@@ -46,6 +52,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/font_roboto_regular"
+            android:text="@{item.title}"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/item_image"
@@ -59,6 +66,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/font_roboto_regular"
+            android:text="@{item.writer}"
             android:textColor="@color/color_name"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toBottomOf="@+id/item_title"
@@ -71,6 +79,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/font_roboto_regular"
+            android:text="@{item.date}"
             android:textColor="@color/color_date"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"

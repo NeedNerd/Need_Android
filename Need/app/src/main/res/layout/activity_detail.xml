@@ -12,6 +12,10 @@
         <variable
             name="activity"
             type="com.nerd.need.view.activity.DetailActivity" />
+
+        <variable
+            name="item"
+            type="com.nerd.need.data.model.response.PostResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +31,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/transparent"
+            android:onClick="@{() -> activity.onClickBackBtn()}"
             android:padding="16dp"
             android:src="@drawable/ic_backbtn"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +69,7 @@
                             android:id="@+id/detail_image"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
+                            app:imageUrlBig="@{item.photo}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +84,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/font_noto_medium"
+                        android:text="@{item.title}"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -93,11 +100,12 @@
                         android:background="@drawable/background_tag_want_buy"
                         android:fontFamily="@font/font_roboto_bold"
                         android:padding="8dp"
-                        android:text="@string/text_want_buy"
                         android:textColor="@color/color_tag"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                        app:tagCheck="@{item.state}"
+                        tools:text="@string/text_want_buy" />
 
                     <TextView
                         android:id="@+id/detail_price"
@@ -106,6 +114,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="sans-serif-medium"
+                        android:text="@{@string/priceFormat(item.price)}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -130,6 +139,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="@{item.writer}"
                         android:textColor="@color/color_detail"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/detail_hint_writer"
@@ -154,6 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="@{item.date}"
                         android:textColor="@color/color_detail"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/detail_hint_date"
@@ -178,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="@{item.contact}"
                         android:textColor="@color/color_detail"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/detail_hint_phone"
@@ -202,6 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:text="@{item.local}"
                         android:textColor="@color/color_detail"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/detail_hint_area"
@@ -215,17 +228,20 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
+                        android:text="@{item.content}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/detail_area"
                         tools:text="ㄴㅇㄱㅁㄴㅇㄱㄴㄴㅇㄹㅁㄴ우헹ㄴ뭏엠ㄴ훔ㅇ네ㅑㅎ뭉ㄴ햐ㅔ우ㅑㅔㄴ우눙메햐ㅜㄴㅇ메ㅑ훈ㅇㅁ헤ㅑㅁㄴ우ㅑㅔㅔㅑㅁㄴ어륨ㄴㅇㅁㄴㅁㄴㅇ리ㅠㅣㅠ" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/stateChangeView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/detail_content">

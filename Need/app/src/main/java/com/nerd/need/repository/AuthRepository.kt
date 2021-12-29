@@ -5,6 +5,7 @@ import com.nerd.need.data.Server
 import com.nerd.need.data.model.request.LoginRequest
 import com.nerd.need.data.model.request.RegisterRequest
 import com.nerd.need.data.model.response.LoginResponse
+import com.nerd.need.data.model.response.MyInfoReponse
 import io.reactivex.Single
 import org.json.JSONObject
 
@@ -30,6 +31,18 @@ class AuthRepository {
             }
 
             it.message()
+        }
+    }
+
+    fun getMyInfo(token: String): Single<MyInfoReponse>{
+        return Server.authApi.getMyIf(token).map {
+
+            if (!it.isSuccessful) {
+                val errorBody = JSONObject(it.errorBody()!!.string())
+                throw Throwable(errorBody.getString("message"))
+            }
+
+            it.body()!!.data
         }
     }
 }

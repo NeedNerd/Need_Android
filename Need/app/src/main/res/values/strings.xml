@@ -27,6 +27,7 @@
     <string name="text_input_content">내용을 입력해주세요.</string>
     <string name="text_input_tag">태그를 선택해주세요.</string>
     <string name="text_hint_price">원</string>
+    <string formatted="false" name="priceFormat">%s원</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

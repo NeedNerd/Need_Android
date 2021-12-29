@@ -23,7 +23,7 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
     override fun onResume() {
         super.onResume()
         if(lastState != null){
-            getAllStatePost(lastState)
+            startGet(lastState)
         }
     }
 
@@ -75,12 +75,22 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
     }
 
     private fun checkAllState(state: Int) {
+        Log.d("check", "${state} ${lastState}")
+
         if (lastState == state) {
-            lastState == -1
+            lastState = -1
+            mBinding.myWantShareBtn.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.background_disabled_button)
+            mBinding.myWantBuyBtn.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.background_disabled_button)
+
         } else {
             lastState = state
         }
+        startGet(state)
+    }
 
+    private fun startGet(state: Int) {
         if (lastState >= 0) {
             getAllStatePost(lastState)
         } else {
@@ -90,6 +100,8 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
 
 
     fun onClickBuyBtn() {
+        Log.d("click", "buy click")
+
         mBinding.myWantBuyBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_want_buy)
         mBinding.myWantShareBtn.background =
@@ -98,11 +110,12 @@ class ItemAllFragment : BaseFragment<FragmentItemAllBinding, ItemAllViewModel>()
     }
 
     fun onClickShareBtn() {
+        Log.d("click", "share click")
+
         mBinding.myWantBuyBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.background_disabled_button)
         mBinding.myWantShareBtn.background =
             ContextCompat.getDrawable(requireContext(), R.drawable.background_tag_want_share)
-        lastState = 1
         checkAllState(1)
     }
 

@@ -28,7 +28,7 @@ class ItemMyViewModel : BaseViewModel() {private val repository = PostRepository
     }
 
     fun getMyStatePost(token: String, state: Int){
-        addDisposable(repository.getAllPostState(token, state), object : DisposableSingleObserver<List<PostResponse>>(){
+        addDisposable(repository.getMyPostState(token, state), object : DisposableSingleObserver<List<PostResponse>>(){
             override fun onSuccess(t: List<PostResponse>) {
                 getMyStateEvent.value = t
                 Log.d("result", "my state post 가져오기 성공")

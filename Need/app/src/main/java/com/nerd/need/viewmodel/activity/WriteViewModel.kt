@@ -16,25 +16,26 @@ class WriteViewModel : BaseViewModel() {
 
     val title = MutableLiveData<String>()
     val content = MutableLiveData<String>()
-    val price = MutableLiveData<String>(0.toString())
+    val price = MutableLiveData<String>("")
 
     val uploadImageEvent = MutableLiveData<String>()
     val writePostEvent = MutableLiveData<Int>()
     val myInfoEvent = MutableLiveData<MyInfoReponse>()
 
-    fun getMyInfo(token: String){
-        addDisposable(authRepository.getMyInfo(token), object: DisposableSingleObserver<MyInfoReponse>(){
-            override fun onSuccess(t: MyInfoReponse) {
-                myInfoEvent.value = t
-                Log.d("result", "내 정보 조회 성공")
-            }
+    fun getMyInfo(token: String) {
+        addDisposable(authRepository.getMyInfo(token),
+            object : DisposableSingleObserver<MyInfoReponse>() {
+                override fun onSuccess(t: MyInfoReponse) {
+                    myInfoEvent.value = t
+                    Log.d("result", "내 정보 조회 성공")
+                }
 
-            override fun onError(e: Throwable) {
-                onErrorEvent.value = e
-                Log.d("result", "내 정보 조회 실패")
-            }
+                override fun onError(e: Throwable) {
+                    onErrorEvent.value = e
+                    Log.d("result", "내 정보 조회 실패")
+                }
 
-        })
+            })
     }
 
     fun uploadImage(token: String, imageFile: MultipartBody.Part) {
@@ -54,7 +55,10 @@ class WriteViewModel : BaseViewModel() {
     }
 
     fun writePost(image: String, state: String, token: String) {
-        val priceToInt = Integer.parseInt(price.value)
+        var priceToInt = 0
+        if (!price.value.equals("")) {
+           priceToInt = Integer.parseInt(price.value)
+        }
 
         if (!content.equals("") && !title.equals("")) {
             val request = WriteRequest(content.value!!, image, priceToInt, state, title.value!!)

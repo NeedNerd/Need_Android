@@ -45,6 +45,10 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
 
             writePostEvent.observe(this@WriteActivity, Observer {
                 Log.d("success", "게시글 작성 성공")
+                val intent = Intent(this@WriteActivity, DetailActivity::class.java)
+                intent.putExtra("postIdx", it)
+                startActivity(intent)
+                finish()
             })
 
             myInfoEvent.observe(this@WriteActivity, Observer {
@@ -61,22 +65,32 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
     }
 
     fun onClickUploadBtn() {
-        if (shareCount > 0) {
-            val token = SharedPreferenceManager.getToken(this)
+        if (state == "0") {
+            uploadImage()
+        } else if (state == "1") {
+            if (shareCount > 0) {
+                uploadImage()
+            } else {
+                Toast.makeText(this, "나눔 횟수가 부족합니다. 다음 달 1일에 다시 추가됩니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
-            if (token != null) {
-                if (state != "") {
-                    if (imageFile != null) {
-                        mViewModel.uploadImage(token, imageFile!!)
-                    }
+    fun uploadImage(){
+        val token = SharedPreferenceManager.getToken(this)
+
+        if (token != null) {
+            if (state != "") {
+                if (imageFile != null) {
+                    mViewModel.uploadImage(token, imageFile!!)
                 } else {
-                    Toast.makeText(this, "나눔 & 구매 중 한 가지를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "사진을 추가해주세요!", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "토큰이 만료되었습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "나눔 & 구매 중 한 가지를 선택해주세요.", Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(this, "나눔 횟수가 부족합니다. 다음 달 1일에 다시 추가됩니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "토큰이 만료되었습니다. 다시 로그인해주세요", Toast.LENGTH_SHORT).show()
         }
     }
 

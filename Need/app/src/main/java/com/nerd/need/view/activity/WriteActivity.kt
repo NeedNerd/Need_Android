@@ -14,6 +14,7 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
         get() = R.layout.activity_write
 
     override fun observerViewModel() {
+        mBinding.activity = this
         with(mViewModel) {
 
         }
@@ -23,8 +24,8 @@ class WriteActivity : BaseActivity<ActivityWriteBinding, WriteViewModel>() {
         finish()
     }
 
-    fun onClickImageBtn() {
-
+    fun onClickCameraBtn() {
+        finish()
     }
 
     fun onClickWantBuyBtn() {
